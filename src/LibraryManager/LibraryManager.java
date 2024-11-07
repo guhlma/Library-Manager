@@ -7,7 +7,6 @@ public class LibraryManager {
         Book myFirstBook = new Book("123456", "Die drei ???","Angela Mekel", "Krimi");
 
         Member member = new Member(1234, "Hans Meier");
-
         member.addBook(myFirstBook);
     }
 }

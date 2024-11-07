@@ -16,7 +16,10 @@ public class Member {
     }
 
     public void addBook(Book book) {
-
         loanBooks.add(book);
+    }
+
+    public void returnBook(Book book){
+        loanBooks.remove(book);
     }
 }
