@@ -8,9 +8,7 @@ public class Member {
     private String name;
     private ArrayList<Book> loanBooks = new ArrayList<>();
 
-
     public Member(int id, String name) {
-
         this.id = id;
         this.name = name;
     }
@@ -22,4 +20,5 @@ public class Member {
     public void returnBook(Book book){
         loanBooks.remove(book);
     }
+
 }

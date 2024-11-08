@@ -28,4 +28,8 @@ public class Book {
     public void setAvailable() {
         isAvailable = true;
     }
+
+    public String getTitle(){
+        return title;
+    }
 }
