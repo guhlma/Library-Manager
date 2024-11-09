@@ -1,7 +1,7 @@
 package LibraryManager;
 
-import java.sql.SQLOutput;
 import java.time.ZonedDateTime;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class LibraryManager {
@@ -13,7 +13,6 @@ public class LibraryManager {
         Library myLibrary = new Library();
         Book myFirstBook = new Book("123456", "CleanCode", "Angela Mekel", "Krimi");
         Member createAMember = myLibrary.createMember("Malte");
-        myLibrary.borrowBook(myFirstBook, createAMember, ZonedDateTime.now().plusDays(7));  //aktuelle Zeit +7 Tage
         myLibrary.addBookToLibrary(myFirstBook);
 
         System.out.println("Willkommen in der Library. Bitte wählen Sie eine Option:");
@@ -23,6 +22,8 @@ public class LibraryManager {
         System.out.println("4: Buch zurückgeben");
         System.out.println("5: Liste der Bücher die verliehen sind");
         System.out.println("6: Beenden");
+
+        // Mitarbeiter fürs hinzufügen neues Bücher (mit pw abfrage) u. Mitglieder Optionen todo
 
         int input = scanner.nextInt();
 
@@ -63,6 +64,34 @@ public class LibraryManager {
                         System.out.println("Das Buch ist bereits verfügbar.");
                     }
                 }
+                break;
+
+            case 3: //
+
+                System.out.println("Welches Buch möchten Sie ausleihen?");
+                System.out.println("Folgende Bücher stehen zur Auswahl:");
+                ArrayList<Book> allBooks = myLibrary.getAllBooks();
+
+                for (Book oneBookFromAll : allBooks) {
+                    System.out.println("Buch: " + oneBookFromAll.getTitle());
+                }
+
+                String titleFromUserInput2 = scanner.next();
+                Book bookToBorrow = myLibrary.searchBook(titleFromUserInput2);
+
+                if (bookToBorrow == null) {
+                    System.out.println("Das Buch existiert nicht.");
+                } else {
+
+                    if (!bookToBorrow.isAvailable()) {
+                        System.out.println("Das Buch ist derzeit nicht da.");
+
+                    } else {
+                        myLibrary.borrowBook(bookToBorrow, createAMember, ZonedDateTime.now().plusDays(7));
+                        System.out.println("Buch erfolgreich ausgeliehen!");
+                    }
+                }
+                break;
         }
     }
 }

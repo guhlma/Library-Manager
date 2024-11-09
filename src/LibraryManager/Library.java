@@ -32,9 +32,9 @@ public class Library {
 
     public ZonedDateTime getReturnDateFromBook(Book bookV) {
 
-        for (Loan loan : allLoans){
+        for (Loan loan : allLoans) {
 
-            if (bookV.getTitle().equalsIgnoreCase(loan.getBookTitle())){
+            if (bookV.getTitle().equalsIgnoreCase(loan.getBookTitle())) {
                 return loan.getReturnDateTime();
             }
         }
@@ -48,5 +48,9 @@ public class Library {
             }
         }
         return null;
+    }
+
+    public ArrayList<Book> getAllBooks() {
+        return allBooks;
     }
 }

@@ -16,7 +16,6 @@ public class Loan {
         this.returnDateTime = returnDateTime;
         this.loanDateTime = ZonedDateTime.now();  // gibt aktuelle Uhrzeit
     }
-
     public ZonedDateTime getReturnDateTime() {
         return returnDateTime;
     }
