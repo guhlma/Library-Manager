@@ -12,6 +12,7 @@ public class Library {
     private ArrayList<Book> allBooks = new ArrayList<>();
     private ArrayList<Member> allMembers = new ArrayList<>();
     private ArrayList<Loan> allLoans = new ArrayList<>();
+    private ArrayList<Employee> allEmployees = new ArrayList<>();
 
     public void addBookToLibrary(Book book) {
         allBooks.add(book);
@@ -21,6 +22,12 @@ public class Library {
         Member member = new Member(1234, memberName);
         allMembers.add(member);
         return member;
+    }
+
+    public Employee createEmployee(String employeeName, String password) {
+        Employee employee = new Employee(1234, employeeName,password);
+        allEmployees.add(employee);
+        return employee;
     }
 
     public void borrowBook(Book book, Member member, ZonedDateTime returnDateTime) {
@@ -41,9 +48,18 @@ public class Library {
         return null; //todo
     }
 
+    public Employee searchEmployee(String password) {
+        for (Employee employee : allEmployees) {
+            if (employee.getPassword().equals(password)) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
     public Book searchBook(String title) {
         for (Book book : allBooks) {
-            if (title.equalsIgnoreCase(book.getTitle())) {
+            if (book.getTitle().equalsIgnoreCase(title)) {
                 return book;
             }
         }

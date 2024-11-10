@@ -12,8 +12,28 @@ public class LibraryManager {
 
         Library myLibrary = new Library();
         Book myFirstBook = new Book("123456", "CleanCode", "Angela Mekel", "Krimi");
-        Member createAMember = myLibrary.createMember("Malte");
+        Member createdMember = myLibrary.createMember("Malte");
+        Employee createdEmployee = myLibrary.createEmployee("Peter","123Tobi123");
         myLibrary.addBookToLibrary(myFirstBook);
+
+        System.out.println("Sind Sie Mitarbeiter oder Kunde?");
+        System.out.println("1: Mitarbeiter");
+        System.out.println("2: Kunde");
+
+        int inputHumanChoice = scanner.nextInt();
+        if (inputHumanChoice == 1){
+            System.out.println("Geben Sie Ihr Passwort ein: ");
+            String passwordInput = scanner.next();
+            Employee employee = myLibrary.searchEmployee(passwordInput);
+
+            if (employee != null){
+                System.out.println("Erfolgreich eingeloggt: " + employee.getName()) ;
+                System.out.println();
+            } else {
+                System.out.println("Falsches Passwort. Probieren Sie es erneut!");
+                return;
+            }
+        }
 
         System.out.println("Willkommen in der Library. Bitte wählen Sie eine Option:");
         System.out.println("1: Buch suchen");  // if available
@@ -87,7 +107,7 @@ public class LibraryManager {
                         System.out.println("Das Buch ist derzeit nicht da.");
 
                     } else {
-                        myLibrary.borrowBook(bookToBorrow, createAMember, ZonedDateTime.now().plusDays(7));
+                        myLibrary.borrowBook(bookToBorrow, createdMember, ZonedDateTime.now().plusDays(7));
                         System.out.println("Buch erfolgreich ausgeliehen!");
                     }
                 }

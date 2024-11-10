@@ -29,7 +29,7 @@ public class Book {
         isAvailable = true;
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 }
